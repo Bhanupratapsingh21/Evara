@@ -1,55 +1,47 @@
-'use client';
+"use client";
+import { ShieldCheck, Users, Zap, Globe, Shuffle } from 'lucide-react';
 
-import { Circle, CheckCircle2 } from 'lucide-react';
+const options = [
+    { id: 'same-uni', label: 'My University Only', desc: 'Keep it close to home', icon: Users },
+    { id: 'same-major', label: 'Same Major Buddies', desc: 'Focus on your craft', icon: ShieldCheck },
+    { id: 'diff-uni', label: 'Cross-Campus', desc: 'Meet students from everywhere', icon: Globe },
+    { id: 'random', label: 'Universe Decides', desc: 'Totally random connection', icon: Shuffle },
+];
 
-interface StepTwoProps {
-    selectedOption: string | null;
-    setSelectedOption: (option: string | null) => void;
-    options: { id: string; label: string }[];
-    handleSelect: (id: string) => void;
-}
-
-export default function StepThree({
-    selectedOption,
-    options,
-    handleSelect
-}: StepTwoProps) {
+export default function StepThree({ selectedOption, setSelectedOption }: any) {
     return (
-        <>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4 text-center sm:text-left">
-                Choose Who You Chat With
-            </h1>
-            <p className="text-sm sm:text-base text-gray-500 mb-6 sm:mb-8 text-center sm:text-left">
-                Pick the kind of people you'd like to meet.
-            </p>
+        <div className="text-center">
+            <h1 className="text-3xl font-bold text-[#0F172A] mb-3 tracking-tight">Set your vibe</h1>
+            <p className="text-[#64748B] mb-10 max-w-md mx-auto">Choose how you want to discover new people on campus.</p>
 
-            {/* Selection options - Vertical layout with responsive width */}
-            <div className="w-full mb-8 sm:mb-12">
-                <div className="flex flex-col items-center gap-4 w-full">
-                    {options.map((option) => (
-                        <div key={option.id} className="flex items-center gap-3 w-full max-w-2xl">
-                            {selectedOption === option.id ? (
-                                <CheckCircle2 className="text-[#B30738] flex-shrink-0" size={24} />
-                            ) : (
-                                <Circle className="text-[#B30738] flex-shrink-0" size={24} />
-                            )}
-                            <button
-                                type="button"
-                                onClick={() => handleSelect(option.id)}
-                                className={`flex-1 p-4 rounded-lg border-2 transition-all w-full text-left ${selectedOption === option.id
-                                    ? 'border-[#B30738] bg-[#B30738] text-white'
-                                    : 'border-gray-200 hover:border-gray-300 bg-white'
-                                    }`}
-                            >
-                                <span className={`font-medium ${selectedOption === option.id ? 'text-white' : 'text-gray-700'
-                                    }`}>
-                                    {option.label}
-                                </span>
-                            </button>
-                        </div>
-                    ))}
-                </div>
+            <div className="grid grid-cols-1 gap-4 max-w-lg mx-auto">
+                {options.map((option) => {
+                    const active = selectedOption === option.id;
+                    const Icon = option.icon;
+                    return (
+                        <button
+                            key={option.id}
+                            onClick={() => setSelectedOption(option.id)}
+                            className={`p-5 rounded-[1.5rem] border-2 text-left flex items-center gap-4 transition-all ${
+                                active 
+                                ? 'border-[#B9A8FF] bg-white shadow-lg shadow-purple-500/5' 
+                                : 'border-slate-100 bg-white hover:border-slate-200'
+                            }`}
+                        >
+                            <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                                active ? 'bg-[#B9A8FF] text-white' : 'bg-slate-50 text-[#64748B]'
+                            }`}>
+                                <Icon size={22} />
+                            </div>
+                            <div>
+                                <p className={`font-bold ${active ? 'text-[#0F172A]' : 'text-[#64748B]'}`}>{option.label}</p>
+                                <p className="text-xs text-slate-400 font-medium">{option.desc}</p>
+                            </div>
+                            {active && <div className="ml-auto w-3 h-3 rounded-full bg-[#B9A8FF]" />}
+                        </button>
+                    );
+                })}
             </div>
-        </>
+        </div>
     );
 }

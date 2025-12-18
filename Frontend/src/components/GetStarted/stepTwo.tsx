@@ -1,59 +1,49 @@
-'use client';
+"use client";
+import { Code, Paintbrush, Music, Film, Tv, BookOpen, Coffee, Camera, Gamepad2, Dumbbell } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-import { LucideIcon } from 'lucide-react';
+const interestsList = [
+    { id: 'tech', name: 'Technology', icon: Code },
+    { id: 'creative', name: 'Art & Design', icon: Paintbrush },
+    { id: 'music', name: 'Music', icon: Music },
+    { id: 'movies', name: 'Cinema', icon: Film },
+    { id: 'gaming', name: 'Gaming', icon: Gamepad2 },
+    { id: 'fitness', name: 'Fitness', icon: Dumbbell },
+    { id: 'coffee', name: 'Coffee', icon: Coffee },
+    { id: 'photo', name: 'Photography', icon: Camera },
+];
 
-type Interest = {
-    id: string;
-    name: string;
-    icon: LucideIcon;
-};
-
-type InterestSelectionProps = {
-    toggleInterest: (id: string) => void;
-    selectedInterests: string[];
-    interests: Interest[];
-};
-
-export default function StepTwo({
-    toggleInterest,
-    selectedInterests,
-    interests,
-}: InterestSelectionProps) {
+export default function StepTwo({ selectedInterests, toggleInterest }: any) {
     return (
-        <>
-            <h1 className="text-xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4 text-center ">
-                Tell Us What You're Into — So We Can <br className="hidden sm:block" /> Assume Less and Match More.
-            </h1>
-            <p className="text-sm sm:text-base text-gray-500 mb-6 sm:mb-8 text-center ">
-                Choose the topics you care about. We'll use them to connect you with students who get it.
-            </p>
+        <div className="text-center">
+            <h1 className="text-3xl font-bold text-[#0F172A] mb-3 tracking-tight">What are you into?</h1>
+            <p className="text-[#64748B] mb-10 max-w-md mx-auto">Pick at least 2 topics. This helps EVARA skip the awkward small talk.</p>
 
-            {/* Interest cards - Responsive grid */}
-            <div className="w-full mb-8 sm:mb-12">
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 px-2">
-                    {interests.map(({ id, name, icon: Icon }) => (
-                        <button
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                {interestsList.map(({ id, name, icon: Icon }) => {
+                    const active = selectedInterests.includes(id);
+                    return (
+                        <motion.button
                             key={id}
-                            type="button"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
                             onClick={() => toggleInterest(id)}
-                            className={`p-3 sm:p-4 rounded-lg border-2 flex flex-col items-center transition-all h-40 justify-center ${selectedInterests.includes(id)
-                                    ? 'border-[#B30738] bg-[#B30738] bg-opacity-10'
-                                    : 'border-gray-200 bg-white hover:border-gray-300'
-                                }`}
+                            className={`p-6 rounded-[2rem] border-2 transition-all flex flex-col items-center gap-3 ${
+                                active 
+                                ? 'border-[#5FA8FF] bg-white shadow-xl shadow-blue-500/10' 
+                                : 'border-slate-100 bg-white hover:border-slate-200 shadow-sm'
+                            }`}
                         >
-                            <Icon
-                                size={40}
-                                color={selectedInterests.includes(id) ? '#ffffff' : '#B30738'}
-                                className="mb-2"
-                            />
-                            <span className={`text-sm sm:text-base font-medium ${selectedInterests.includes(id) ? 'text-white' : 'text-gray-900'
-                                }`}>
-                                {name}
-                            </span>
-                        </button>
-                    ))}
-                </div>
+                            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-colors ${
+                                active ? 'bg-[#5FA8FF] text-white' : 'bg-slate-50 text-[#64748B]'
+                            }`}>
+                                <Icon size={24} />
+                            </div>
+                            <span className={`text-sm font-bold ${active ? 'text-[#0F172A]' : 'text-[#64748B]'}`}>{name}</span>
+                        </motion.button>
+                    );
+                })}
             </div>
-        </>
+        </div>
     );
 }

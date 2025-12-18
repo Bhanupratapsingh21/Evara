@@ -1,25 +1,27 @@
 'use client';
+import React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useState } from 'react';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { GraduationCap } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-export default function Header() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const pathname = usePathname();
-
-    // helper to check active link
-    const isActive = (href: string) => pathname === href;
-
+export default function AuthHeader() {
     return (
-        <>
-            <header className="w-full fixed px-4 md:px-20 py-4 flex items-center justify-between bg-opacity-30 backdrop-blur-[2px] z-50">
-                {/* Logo */}
-                <div className="text-2xl font-bold text-[#B30738]">
-                    <Link href="/">AssumeChat</Link>
+        <motion.header
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="w-full absolute top-0 left-0 p-8 md:p-12 z-50 flex justify-start"
+        >
+            <Link href="/" className="flex items-center gap-2.5 group">
+                {/* Logo Squircle */}
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#5FA8FF] to-[#B9A8FF] flex items-center justify-center text-white shadow-sm transition-transform duration-500 group-hover:rotate-6">
+                    <GraduationCap size={22} strokeWidth={2.5} />
                 </div>
 
-            </header>
-        </>
+                {/* Brand Name */}
+                <span className="text-2xl font-black tracking-tighter text-[#0F172A]">
+                    EVARA
+                </span>
+            </Link>
+        </motion.header>
     );
 }

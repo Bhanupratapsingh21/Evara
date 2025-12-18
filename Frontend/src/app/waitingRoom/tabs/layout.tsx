@@ -7,8 +7,8 @@ export default function WaitingRoomLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="flex h-screen bg-white">
-            <Sidebar Children={children} />
-        </div>
+
+        <Sidebar children={children} />
+
     );
 }
