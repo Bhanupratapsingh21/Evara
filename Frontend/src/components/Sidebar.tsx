@@ -66,10 +66,10 @@ const Sidebar = ({ children }: { children: ReactNode }) => {
                 {/* Logo Area */}
                 <div className="p-8">
                     <Link href="/" className="flex items-center gap-2 group">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#5FA8FF] to-[#B9A8FF] flex items-center justify-center text-white shadow-sm transition-transform group-hover:rotate-3">
-                            <GraduationCap size={20} />
-                        </div>
-                        <span className="text-xl font-bold tracking-tight text-[#0F172A]">EVARA</span>
+                        <img 
+                        className='w-auto h-auto'
+                        src="https://res.cloudinary.com/djwzwq4cu/image/upload/v1767201898/evara-high-resolution-logo-transparent_rprdpw.png" alt=""
+                         />
                     </Link>
                 </div>
 
@@ -123,23 +123,6 @@ const Sidebar = ({ children }: { children: ReactNode }) => {
                         })}
                     </div>
 
-                    <div className="mt-8 pt-8 border-t border-slate-50">
-                        <span className="px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-4">
-                            Sub Menu
-                        </span>
-                        <div className="space-y-1">
-                            {getSubTabs().map((tab) => (
-                                <Link
-                                    key={tab.id}
-                                    href="/ComingSoon"
-                                    className="flex items-center gap-4 p-3 rounded-2xl text-slate-500 hover:bg-slate-50 transition-all group"
-                                >
-                                    <tab.icon size={18} className="group-hover:text-[#B9A8FF]" />
-                                    <span className="text-sm font-medium">{tab.label}</span>
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
                 </div>
 
                 {/* User Footer */}

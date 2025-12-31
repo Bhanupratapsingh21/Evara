@@ -122,7 +122,7 @@ export default function HeroSection() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4ADE80] opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4ADE80]"></span>
           </span>
-          <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wider">1,240 Students Online</span>
+          <span className="text-xs font-semibold text-[#64748B] uppercase tracking-wider"> Students Online</span>
         </div>
 
         <h1 className="text-5xl md:text-7xl font-bold mb-6 text-[#0F172A] tracking-tight">

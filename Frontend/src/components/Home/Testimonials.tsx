@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Testimonial from '@/types/Testimonials';
 import testimonialsData from '@/Data/Testimonials';
+import { Avatar } from '@chakra-ui/react';
 
 // Star Component for cleaner code
 const StarRating = ({ rating }: { rating: number }) => (
@@ -25,19 +26,25 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => (
   <div className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] mb-6 flex flex-col gap-4 group hover:shadow-[0_15px_30px_rgba(95,168,255,0.08)] transition-all duration-500">
     <div className="flex items-center gap-4">
       <div className="relative w-12 h-12 rounded-2xl overflow-hidden border border-slate-50">
-        <Image
+        {testimonial.img !== "" ? (<Image
           fill
           src={testimonial.img}
           alt={testimonial.name}
           className="object-cover"
-        />
+        />) : (
+          <>
+            <div className='flex justify-center items-center bg-blue-300 w-full h-full'>
+              <p className='font-semiboldd '>{testimonial.name.slice(0, 2)}</p>
+            </div>
+          </>
+        )}
       </div>
       <div>
         <h4 className="text-sm font-bold text-[#0F172A]">{testimonial.name}</h4>
         <p className="text-[11px] font-medium text-[#64748B] uppercase tracking-wider">{testimonial.title}</p>
       </div>
     </div>
-    
+
     <p className="text-[#64748B] text-sm leading-relaxed italic">
       "{testimonial.content}"
     </p>
@@ -85,7 +92,7 @@ export default function TestimonialsSection() {
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-20">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -93,7 +100,7 @@ export default function TestimonialsSection() {
           >
             Real Voices. <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5FA8FF] to-[#B9A8FF]">Real Vibes.</span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -106,7 +113,7 @@ export default function TestimonialsSection() {
 
         {/* Vertical Marquee Grid */}
         <div className="relative grid grid-cols-1 md:grid-cols-3 gap-6 h-[700px]">
-          
+
           {/* Top & Bottom Blur Mask (The Magic Part) */}
           <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#F9FAFC] to-transparent z-20" />
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F9FAFC] to-transparent z-20" />

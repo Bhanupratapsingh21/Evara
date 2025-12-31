@@ -14,14 +14,13 @@ export default function StepOne({ academicData, handleAcademicChange }: any) {
           <label className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#64748B] mb-2 ml-1">
             <GraduationCap size={14} className="text-[#5FA8FF]" /> University
           </label>
-          <select
+          <input
+            type="text"
             value={academicData.university}
             onChange={(e) => handleAcademicChange('university', e.target.value)}
-            className="w-full p-4 bg-white border border-slate-100 rounded-2xl shadow-sm focus:ring-4 focus:ring-[#5FA8FF]/10 focus:border-[#5FA8FF] outline-none transition-all font-medium appearance-none"
-          >
-            <option value="">Choose University</option>
-            {usColleges.map((c, i) => <option key={i} value={c.name}>{c.name}</option>)}
-          </select>
+            placeholder="Your University"
+            className="w-full p-4 bg-white border border-slate-100 rounded-2xl shadow-sm focus:ring-4 focus:ring-[#5FA8FF]/10 focus:border-[#5FA8FF] outline-none transition-all font-medium"
+          />
         </div>
 
         {/* Course */}
@@ -51,8 +50,8 @@ export default function StepOne({ academicData, handleAcademicChange }: any) {
                 type="button"
                 onClick={() => handleAcademicChange('year', y)}
                 className={`p-3 rounded-xl border text-sm font-bold transition-all ${academicData.year === y
-                    ? 'border-[#5FA8FF] bg-[#5FA8FF]/5 text-[#5FA8FF]'
-                    : 'border-slate-100 bg-white text-[#64748B] hover:border-slate-200'
+                  ? 'border-[#5FA8FF] bg-[#5FA8FF]/5 text-[#5FA8FF]'
+                  : 'border-slate-100 bg-white text-[#64748B] hover:border-slate-200'
                   }`}
               >
                 {y}

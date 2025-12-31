@@ -45,17 +45,17 @@ export default function Header() {
 
     return (
         <>
-            <motion.header 
+            <motion.header
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 className="w-full fixed top-0 left-0 px-6 md:px-16 py-4 flex items-center justify-between border-b border-slate-100 bg-white/70 backdrop-blur-md z-[100]"
             >
                 {/* Logo Section */}
                 <Link href="/" className="flex items-center gap-2 group">
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#5FA8FF] to-[#B9A8FF] flex items-center justify-center text-white shadow-sm group-hover:rotate-6 transition-transform">
-                        <GraduationCap size={18} />
-                    </div>
-                    <span className="text-xl font-bold tracking-tight text-[#0F172A]">EVARA</span>
+                    <img
+                        className='w-auto h-12'
+                        src="https://res.cloudinary.com/djwzwq4cu/image/upload/v1767201898/evara-high-resolution-logo-transparent_rprdpw.png" alt=""
+                    />
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -64,15 +64,14 @@ export default function Header() {
                         <Link
                             key={href}
                             href={href}
-                            className={`relative text-sm font-semibold transition-colors duration-300 ${
-                                isActive(href) ? 'text-[#5FA8FF]' : 'text-[#64748B] hover:text-[#0F172A]'
-                            }`}
+                            className={`relative text-sm font-semibold transition-colors duration-300 ${isActive(href) ? 'text-[#5FA8FF]' : 'text-[#64748B] hover:text-[#0F172A]'
+                                }`}
                         >
                             {label}
                             {isActive(href) && (
-                                <motion.div 
+                                <motion.div
                                     layoutId="nav-underline"
-                                    className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#5FA8FF] rounded-full" 
+                                    className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#5FA8FF] rounded-full"
                                 />
                             )}
                         </Link>
@@ -90,7 +89,7 @@ export default function Header() {
                                 </div>
                                 <span className="text-sm font-bold text-[#0F172A]">Hi, {user?.name.split(' ')[0]}</span>
                             </div>
-                            
+
                             <button
                                 onClick={handleLogout}
                                 className="flex items-center gap-2 px-5 py-2 text-sm font-bold text-[#F87171] hover:bg-red-50 rounded-xl transition-colors"
@@ -132,16 +131,16 @@ export default function Header() {
                 {isMenuOpen && (
                     <>
                         {/* Overlay */}
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setIsMenuOpen(false)}
                             className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[90] md:hidden"
                         />
-                        
+
                         {/* Menu Content */}
-                        <motion.div 
+                        <motion.div
                             initial={{ x: '100%' }}
                             animate={{ x: 0 }}
                             exit={{ x: '100%' }}
@@ -150,7 +149,7 @@ export default function Header() {
                         >
                             <div className="flex justify-between items-center mb-12">
                                 <span className="text-xl font-bold text-[#0F172A]">Menu</span>
-                                <button onClick={() => setIsMenuOpen(false)}><FiX size={24}/></button>
+                                <button onClick={() => setIsMenuOpen(false)}><FiX size={24} /></button>
                             </div>
 
                             {isAuthenticated && (
@@ -209,7 +208,7 @@ export default function Header() {
                     </>
                 )}
             </AnimatePresence>
-            
+
             {/* Spacer to push content below fixed header */}
             <div className="h-20" />
         </>

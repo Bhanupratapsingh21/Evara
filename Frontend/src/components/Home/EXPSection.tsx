@@ -112,7 +112,7 @@ export default function ExperienceSection() {
                                 <div key={i} className={`w-6 h-6 rounded-full border-2 border-white bg-gradient-to-br ${i === 2 ? 'from-[#B9A8FF] to-[#5FA8FF]' : 'from-[#5FA8FF] to-[#B9A8FF]'}`} />
                             ))}
                         </span>
-                        <p className="text-sm font-semibold text-[#0F172A]">Join 5,000+ students exploring Evara today</p>
+                        <p className="text-sm font-semibold text-[#0F172A]">Join students exploring Evara today</p>
                     </div>
                 </motion.div>
             </div>
